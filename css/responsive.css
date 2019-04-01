@@ -44,6 +44,10 @@
 	.cart{
 		padding:0px !important;
 	}
+	footer .max{
+		margin-left: 20px;
+		margin-right: 20px;
+	}
 }
 @media (min-width: 768px) {
 	.carousel-indicators{
