@@ -737,7 +737,51 @@
         </div>
     </footer>
 
-    
+    <div class="tuvan_footer" style="display: block;">          
+            <div class="wap">
+                <div id="clos"></div>
+                                <div class="tv1">
+                    <p class="p2">Trưởng phòng kỹ thuật - Mr Thịnh</p>
+                    <p class="p3"> <a href="tel:0933460666">0933460666</a></p>                  
+                </div>
+                                <div class="tv1">
+                    <p class="p2">Tư vấn thi công 1 - Mr Hoàng</p>
+                    <p class="p3"> <a href="tel:0988935163">0988935163</a></p>                  
+                </div>
+                                <div class="tv1">
+                    <p class="p2">Tư vấn thi công 2 - Mr khánh</p>
+                    <p class="p3"> <a href="tel:0982215528">0982215528</a></p>                  
+                </div>
+                                <div class="tv1">
+                    <p class="p2">Tư vấn thi công 3 - Mr Thạo</p>
+                    <p class="p3"> <a href="tel:0932386086">0932386086</a></p>                  
+                </div>
+                            </div>
+            
+            <script type="text/javascript">
+                jQuery(document).ready(function($){
+                    $('#clos').bind('click',function(){
+                        if($(this).parent().parent().hasClass('clicked')){
+                            $(this).parent().parent().removeClass('clicked');
+                        }else{
+                            $(this).parent().parent().addClass('clicked');
+                        }                       
+                    })
+                })
+            </script>
+            <style>
+                .tuvan_footer{background:none repeat scroll 0 0 #FFFFFF;border-left:2px solid #1a5dd7;bottom:0;position:fixed;right:0;z-index:9999;border-top:15px solid #1a5dd7;transition:all 0.4s ease 0s;-webkit-transition:all 0.4s ease 0s;-ms-transition:all 0.4s ease 0s;}
+                .tuvan_footer .wap{padding:10px 20px;text-align:center;position:relative;}
+                .p1{font-weight:600;font-size:15px;color:red;}
+                .p2{font-size:15px;padding:0;}
+                .p3 a{color:#FF0000 !important;font-size:25px;line-height:normal;}
+                .tv1{padding-bottom:5px;}
+                .tuvan_footer.clicked{height:0px;}
+                .tuvan_footer.clicked #clos{background-position:right 0;}
+                #clos{background:url("images/button.gif") no-repeat scroll -30px 0 rgba(0, 0, 0, 0);height:15px;position:absolute;right:0;top:-15px;width:30px;cursor:pointer;}
+            </style>
+            
+        </div>
 </body>
 
 </html>
