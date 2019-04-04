@@ -24,7 +24,7 @@
           <form name="frmAdd" method="post" action="{{ asset('backend/slogan/edit/'.$slogan->id) }}" enctype="multipart/form-data" >
             <input type="hidden" name="_token" value="{!! csrf_token() !!}" />
             <div class="clearfix"></div>
-            <div class="form-group @if ($errors->first('fImages')!='') has-error @endif">
+            <!-- <div class="form-group @if ($errors->first('fImages')!='') has-error @endif">
                 <div class="form-group" >
                   <div class="form-group">
                     <img src="{{ asset('upload/hinhanh/'.@$slogan->photo) }}" onerror="this.src='{{asset('public/admin_assets/images/no-image.jpg')}}'" width="200"  alt="NO PHOTO" />
@@ -34,7 +34,7 @@
                     <input type="file" id="file" name="fImages" >
                     <p class="help-block">Width:225px - Height: 162px</p>
                 </div>
-            </div>
+            </div> -->
 
             <!-- <div class="form-group ">
                 <div class="form-group" >
@@ -63,8 +63,10 @@
             </div> -->
             <div class="col-md-12">
             	<div class="form-group">
-	                <label for="">Nội dung</label>
-	                <textarea name="content" id="txtContent" cols="30" rows="10">{{$slogan->content}}</textarea>
+                  <label for="">Số điện thoại</label>
+                  <input type="text" name="content" class="form-control" value="">
+	                <!-- <label for="">Nội dung</label>
+	                <textarea name="content" id="txtContent" cols="30" rows="10">{{$slogan->content}}</textarea> -->
 	              </div>
             </div>
             <div class="form-group hidden">

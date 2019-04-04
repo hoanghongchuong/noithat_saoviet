@@ -1,7 +1,7 @@
 <?php
     $setting = Cache::get('setting');
     $sliders = DB::table('slider')->where('com','gioi-thieu')->where('status',1)->get();
-    $categories = DB::table('product_categories')->where('com','san-pham')->orderBy('id','desc')->get();
+    $categories = DB::table('product_categories')->where('com','san-pham')->where('parent_id',0)->orderBy('id','desc')->get();
 ?>
 <header id="header" class="">
     <div class="container">
@@ -35,18 +35,18 @@
             <li class="@if(@$com=='thiet-ke')active @endif">
                 <a href="{{url('thiet-ke')}}">Thiết kế
                 </a>
-                <ul class="vk-menu__child">
+                <!-- <ul class="vk-menu__child">
                     <li><a href="">Công trình 1</a></li>
                     <li><a href="">Công trình 1</a></li>
                     <li><a href="">Công trình 1</a></li>                        
-                </ul>
+                </ul> -->
             </li>
             <li class="@if(@$com=='san-pham')active @endif">
                 <a href="{{url('san-pham')}}">SX & bán lẻ
                 </a>
                 <ul class="vk-menu__child">
                     @foreach($categories as $cate)
-                    <li><a href="{{url('san-pham/'.$cate->alias)}}">{{$cate->name}}</a></li>
+                    <li><a href="{{url('san-pham/'.$cate->alias.'-'.'p'.$cate->id)}}">{{$cate->name}}</a></li>
                     @endforeach                      
                 </ul>
             </li>
@@ -88,14 +88,14 @@
             <li>
                 <a href="{{url('thiet-ke')}}">Thiết kế</a>
                 <a href="#menu1" data-toggle="collapse" class="_arrow-mobile"><i class="_icon fa fa-angle-down"></i></a>
-                <ul class="collapse" id="menu1">
+                <!-- <ul class="collapse" id="menu1">
                     <li><a href="#">Công trình 1</a></li>
                     <li><a href="#">Công trình 1</a></li>
                     <li><a href="#">Công trình 1</a></li>
                     <li><a href="#">Công trình 1</a></li>
                     <li><a href="#">Công trình 1</a></li>
                     
-                </ul>
+                </ul> -->
             </li>
             <li>
                 <a href="{{url('san-pham')}}">SX & Bán lẻ</a>

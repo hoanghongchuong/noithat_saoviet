@@ -65,7 +65,9 @@
                 <td><input type="checkbox" name="chon" id="chon" value="{{$item->id}}" class="chon" /></td>
                 <td class="text-center with_dieuhuong">{{$k+1}}</td>                
                 <td>
-                <?php  $parent = DB::table('product_categories')->where('id', $item->parent_id)->first();
+                <?php  
+                  $parent = DB::table('product_categories')->where('id', $item->parent_id)->first();
+                  // dd($parent);
                 ?>
                 @if(!empty($parent))
                   {{ $parent->name }}

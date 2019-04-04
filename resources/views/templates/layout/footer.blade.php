@@ -1,5 +1,6 @@
 <?php
-    $setting = Cache::get('setting');    
+    $setting = Cache::get('setting');
+    $guest_online = DB::table('guest_online')->get();
 ?>
 
 
@@ -32,14 +33,14 @@
             <div class="col-md-4 col-large-4">
                 <h4 style="color:#fff; font-size: 20px; text-transform: uppercase;">Fanpage</h4>
                 <div class="page">
-                    <div class="fb-page fb_iframe_widget" data-href="https://www.facebook.com/noithatbehouse/" data-tabs="timeline" data-width="350" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" fb-xfbml-state="rendered" fb-iframe-plugin-query="adapt_container_width=true&amp;app_id=&amp;container_width=0&amp;height=300&amp;hide_cover=false&amp;href=https%3A%2F%2Fwww.facebook.com%2Fnoithatbehouse%2F&amp;locale=en_US&amp;sdk=joey&amp;show_facepile=true&amp;small_header=false&amp;tabs=timeline&amp;width=350"><span style="vertical-align: bottom; width: 350px; height: 300px;"><iframe name="f35a1d0bbd3cf4" width="350px" height="300px" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" title="fb:page Facebook Social Plugin" src="https://www.facebook.com/v2.9/plugins/page.php?adapt_container_width=true&amp;app_id=&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter%2Fr%2Fd_vbiawPdxB.js%3Fversion%3D44%23cb%3Dfd8b90e53f1e3c%26domain%3Dbehouse.vn%26origin%3Dhttp%253A%252F%252Fbehouse.vn%252Ff1b5119ddf7b648%26relation%3Dparent.parent&amp;container_width=0&amp;height=300&amp;hide_cover=false&amp;href=https%3A%2F%2Fwww.facebook.com%2Fnoithatbehouse%2F&amp;locale=en_US&amp;sdk=joey&amp;show_facepile=true&amp;small_header=false&amp;tabs=timeline&amp;width=350" style="border: none; visibility: visible; width: 350px; height: 300px;" class=""></iframe></span></div>
+                    <div class="fb-page" data-href="https://www.facebook.com/N%E1%BB%99i-Th%E1%BA%A5t-T%C3%A2n-C%E1%BB%95-%C4%90i%E1%BB%83n-X%C6%B0%E1%BB%9Fng-Sao-Vi%E1%BB%87t-205031606985297/" data-tabs="timeline" data-width="350" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/N%E1%BB%99i-Th%E1%BA%A5t-T%C3%A2n-C%E1%BB%95-%C4%90i%E1%BB%83n-X%C6%B0%E1%BB%9Fng-Sao-Vi%E1%BB%87t-205031606985297/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/N%E1%BB%99i-Th%E1%BA%A5t-T%C3%A2n-C%E1%BB%95-%C4%90i%E1%BB%83n-X%C6%B0%E1%BB%9Fng-Sao-Vi%E1%BB%87t-205031606985297/">Nội Thất Tân Cổ Điển - Xưởng Sao Việt</a></blockquote></div>
                 </div>
             </div>
         </div>
         <div class="row bot-footer">
             <div class="col-md-4">
-                <p>ĐANG ONLINE: 120</p>
-                <p>TỔNG SỐ LƯỢT TRUY CẬP: 120</p>
+                <p>ĐANG ONLINE: {{count($guest_online)}}</p>
+                <p>TỔNG SỐ LƯỢT TRUY CẬP: {{$setting->number_view}}</p>
 
             </div>
             <div class="col-md-8">

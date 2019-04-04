@@ -63,18 +63,24 @@
                 <td><input type="checkbox" name="chon" id="chon" value="{{$item->id}}" class="chon" /></td>
                 <td class="text-center with_dieuhuong">{{$k+1}}</td>
                 <td>
-                  <?php  $parent = DB::table('product_categories')->where('id', $item->cate_id)->first();
+                  <?php  
+                    $parent = DB::table('product_categories')->where('id', $item->cate_id)->first();
+                    $parent_cate = DB::table('product_categories')->where('id', $parent->parent_id)->first();
+
                   ?>
-                  @if(!empty($parent))
+                  @if($parent)
+                    @if($parent_cate)
+                      {{$parent_cate->name}} /  {{ $parent->name }}
+                    @else
                     {{ $parent->name }}
-                  @else
+                    @endif
+                    @else
                     {{ 'None' }}
                   @endif
                 </td>
                 <td>
-                  {{$item->name}}
-                </td>
-               
+                  {{$item->name}}                 
+                </td>               
                 <td>
                   <img src="{{ asset('upload/product/'.$item->photo) }}" onerror="this.src='{{ asset('public/admin_assets/images/no-image.jpg') }}';" class="img_product"  alt="NO PHOTO" />
                 </td>

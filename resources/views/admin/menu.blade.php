@@ -18,16 +18,17 @@
             <!-- <li><a href="backend/orders"><i class="fa fa-shopping-cart"></i> <span>Quản lý đơn hàng</span></a></li> -->
             <li><a href="backend/about/edit?type=gioi-thieu"><i class="fa fa-circle-o"></i> <span>Giới thiệu</span></a></li>
             <li><a href="backend/about/edit?type=ho-so"><i class="fa fa-circle-o"></i> <span>Hồ sơ</span></a></li>
-            <li><a href="backend/news?type=tin-tuc"><i class="fa fa-circle-o"></i> <span>Tin tức</span></a></li>
+            <!-- <li><a href="backend/news?type=tin-tuc"><i class="fa fa-circle-o"></i> <span>Tin tức</span></a></li> -->
             <li><a href="backend/news?type=thi-cong"><i class="fa fa-circle-o"></i> <span>Thi công</span></a></li>
+            <li><a href="backend/news?type=thiet-ke"><i class="fa fa-circle-o"></i> <span>Thiết kế</span></a></li>
             <li><a href="backend/news?type=phan-phoi"><i class="fa fa-circle-o"></i> <span>Phân phối sơn nước</span></a></li>
             <li><a href="backend/partner"><i class="fa fa-circle-o"></i> <span>Quản lý đối tác</span></a></li>
             <li><a href="backend/video"><i class="fa fa-circle-o"></i> <span>Quản lý video</span></a></li>
             <!-- <li><a href="backend/feedback"><i class="fa fa-gear" aria-hidden="true"></i> <span>Tại sao chọn chúng tôi</span></a></li> -->
-            <!-- <li><a href="backend/slogan"><i class="fa fa-gear" aria-hidden="true"></i> <span>Slogan</span></a></li> -->
+            <li><a href="backend/slogan"><i class="fa fa-gear" aria-hidden="true"></i> <span>Số điện thoại</span></a></li>
            
             <li><a href="backend/contact"><i class="fa fa-envelope"></i> <span>Quản lý liên hệ</span></a></li>
-            <li><a href="backend/newsletter?type=newsletter"><i class="fa fa-circle-o"></i> <span>Đăng ký nhận tin</span></a></li>
+            <!-- <li><a href="backend/newsletter?type=newsletter"><i class="fa fa-circle-o"></i> <span>Đăng ký nhận tin</span></a></li> -->
             <!-- <li><a href="backend/chinhanh"><i class="fa fa-envelope"></i><span>Quản lý cửa hàng</span></a></li> -->
             <li><a href="backend/slider?type=gioi-thieu"><i class="fa fa-circle-o"></i> <span>Quản lý slider</span></a></li>
             <!-- <li class="treeview">

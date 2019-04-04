@@ -27,244 +27,66 @@ $sliders = DB::table('slider')->where('status',1)->where('com','gioi-thieu')->or
         <div class="row">
             <h2 class="title_home">Sản xuất và bán lẻ</h2>
             <div class="dongke"><span></span></div>
+            @foreach($categories_home as $k=>$cate)
             <div class="list-cate-product mt-30">
-                <div class="pull-left"><a href="" class="cate-name">Giường</a></div>
+                <div class="pull-left"><a href="{{url('san-pham/'.$cate->alias.'-'.'p'.$cate->id)}}" class="cate-name">{{$cate->name}}</a></div>
                 <div class="box-cate">
                     <div class="top-box">
                         <ul class="cate-child nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" aria-expanded="false" href="#home1">Home</a></li>
-                            <li><a data-toggle="tab" href="#menux1" aria-expanded="true">Menu 1</a></li>
-                            <li><a data-toggle="tab" href="#menux2" aria-expanded="true">Menu 2</a></li>
-                            <li><a data-toggle="tab" href="#menux3" aria-expanded="true">Menu 3</a></li>
+                            <li class="active"><a data-toggle="tab" aria-expanded="false" href="#home{{$k}}">Tất cả</a></li>                            
+                            @foreach($cate->productCate() as $key=>$cate_child)
+                            <li><a data-toggle="tab" href="#menux{{$key}}{{$k}}" aria-expanded="true">{{$cate_child->name}}</a></li>
+                            @endforeach
                         </ul>
                         <div class="tab-content">
-                            <div class="tab-pane fade in active" id="home1">
+                            <div class="tab-pane fade in active" id="home{{$k}}">
                                 <div class="list-product-item">
                                     <div class="">
+                                        @foreach($cate->products as $product)
                                         <div class="item col-md-3">
-                                            <a href="" title=""><img src="images/p1.jpg" alt="">
+                                            <a href="{{url('san-pham/'.$product->alias.'.html')}}" title=""><img src="{{asset('upload/product/'.$product->photo)}}" alt="">
                                             </a>
                                             
                                             <div class="footer-cate">
-                                                <p class="name_product"><a href="" title="">Tin tức 1</a></p>
+                                                <p class="name_product"><a href="{{url('san-pham/'.$product->alias.'.html')}}" title="">{{$product->name}}</a></p>
                                                 <div class="price tac">
-                                                    <span class="price_news">Giá: 150000</span>
+                                                    <span class="price_news">Giá: {{number_format($product->price)}} đ</span>
                                                 </div>
                                             </div>
                                         </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                            @foreach($cate->productCate() as $key=>$cate_child)
+                            <div class="tab-pane fade" id="menux{{$key}}{{$k}}">
+                                <div class="list-product-item">
+                                    <div class="">
+                                        @foreach($cate_child->products() as $item)
                                         <div class="item col-md-3">
-                                            <a href="" title=""><img src="images/p1.jpg" alt="">
+                                            <a href="{{url('san-pham/'.$item->alias.'.html')}}" title=""><img src="{{asset('upload/product/'.$item->photo)}}" alt="">
                                             </a>
+                                            
                                             <div class="footer-cate">
-                                                <p class="name_product"><a href="" title="">Tin tức 1</a></p>
+                                                <p class="name_product"><a href="{{url('san-pham/'.$item->alias.'.html')}}" title="">{{$item->name}}</a></p>
                                                 <div class="price tac">
-                                                    <span class="price_news">Giá: 150000</span>
+                                                    <span class="price_news">Giá: {{number_format($item->price)}} đ</span>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="item col-md-3">
-                                            <a href="" title=""><img src="images/p1.jpg" alt="">
-                                            </a>
-                                            <div class="footer-cate">
-                                                <p class="name_product"><a href="" title="">Tin tức 1</a></p>
-                                                <div class="price tac">
-                                                    <span class="price_news">Giá: 150000</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item col-md-3">
-                                            <a href="" title=""><img src="images/p1.jpg" alt="">
-                                            </a>
-                                            <div class="footer-cate">
-                                                <p class="name_product"><a href="" title="">Tin tức 1</a></p>
-                                                <div class="price tac">
-                                                    <span class="price_news">Giá: 150000</span>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        @endforeach
                                         
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="menux1">
-                                <div class="list-product-item">
-                                    <div class="">
-                                        <div class="item col-md-3">
-                                            <a href="" title=""><img src="images/p1.jpg" alt="">
-                                            </a>
-                                            
-                                            <div class="footer-cate">
-                                                <p class="name_product"><a href="" title="">Tin tức 1</a></p>
-                                                <div class="price tac">
-                                                    <span class="price_news">Giá: 150000</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item col-md-3">
-                                            <a href="" title=""><img src="images/p3.jpg" alt="">
-                                            </a>
-                                            <div class="footer-cate">
-                                                <p class="name_product"><a href="" title="">Tin tức 2</a></p>
-                                                <div class="price tac">
-                                                    <span class="price_news">Giá: 150000</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item col-md-3">
-                                            <a href="" title=""><img src="images/p2.jpg" alt="">
-                                            </a>
-                                            <div class="footer-cate">
-                                                <p class="name_product"><a href="" title="">Tin tức 3</a></p>
-                                                <div class="price tac">
-                                                    <span class="price_news">Giá: 150000</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item col-md-3">
-                                            <a href="" title=""><img src="images/p1.jpg" alt="">
-                                            </a>
-                                            <div class="footer-cate">
-                                                <p class="name_product"><a href="" title="">Tin tức 4</a></p>
-                                                <div class="price tac">
-                                                    <span class="price_news">Giá: 150000</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="menux2">
-                                noi dung tab
-                            </div>
-                            <div class="tab-pane fade" id="menux3">
-                                nio dung tab3
-                            </div>
+                            @endforeach
                         </div>
-                        <div class="pull-right"><a href="" class="read-more">Xem thêm <i class="fa fa-angle-right"></i></a></div>
+                        <div class="pull-right"><a href="{{url('san-pham/'.$cate->alias.'-'.'p'.$cate->id)}}" class="read-more">Xem thêm <i class="fa fa-angle-right"></i></a></div>
                     </div>                       
                                             
                 </div>
             </div>
-            <div class="list-cate-product mt-30">
-                <div class="pull-left"><a href="" class="cate-name">Tủ</a></div>
-                <div class="box-cate">
-                    <div class="top-box">
-                        <ul class="cate-child nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" aria-expanded="false" href="#home2">Home</a></li>
-                            <li><a data-toggle="tab" href="#menuxy1" aria-expanded="true">Menu 12</a></li>
-                            <li><a data-toggle="tab" href="#menuxy2" aria-expanded="true">Menu 23</a></li>
-                            <li><a data-toggle="tab" href="#menuxy3" aria-expanded="true">Menu 34</a></li>
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane fade in active" id="home2">
-                                <div class="list-product-item">
-                                    <div class="">
-                                        <div class="item col-md-3">
-                                            <a href="" title=""><img src="images/p1.jpg" alt="">
-                                            </a>
-                                            
-                                            <div class="footer-cate">
-                                                <p class="name_product"><a href="" title="">Tin tức 1</a></p>
-                                                <div class="price tac">
-                                                    <span class="price_news">Giá: 150000</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item col-md-3">
-                                            <a href="" title=""><img src="images/p1.jpg" alt="">
-                                            </a>
-                                            <div class="footer-cate">
-                                                <p class="name_product"><a href="" title="">Tin tức 1</a></p>
-                                                <div class="price tac">
-                                                    <span class="price_news">Giá: 150000</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item col-md-3">
-                                            <a href="" title=""><img src="images/p1.jpg" alt="">
-                                            </a>
-                                            <div class="footer-cate">
-                                                <p class="name_product"><a href="" title="">Tin tức 1</a></p>
-                                                <div class="price tac">
-                                                    <span class="price_news">Giá: 150000</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item col-md-3">
-                                            <a href="" title=""><img src="images/p1.jpg" alt="">
-                                            </a>
-                                            <div class="footer-cate">
-                                                <p class="name_product"><a href="" title="">Tin tức 1</a></p>
-                                                <div class="price tac">
-                                                    <span class="price_news">Giá: 150000</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="menuxy1">
-                                <div class="list-product-item">
-                                    <div class="">
-                                        <div class="item col-md-3">
-                                            <a href="" title=""><img src="images/p1.jpg" alt="">
-                                            </a>
-                                            
-                                            <div class="footer-cate">
-                                                <p class="name_product"><a href="" title="">Tin tức 1</a></p>
-                                                <div class="price tac">
-                                                    <span class="price_news">Giá: 150000</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item col-md-3">
-                                            <a href="" title=""><img src="images/p3.jpg" alt="">
-                                            </a>
-                                            <div class="footer-cate">
-                                                <p class="name_product"><a href="" title="">Tin tức 2</a></p>
-                                                <div class="price tac">
-                                                    <span class="price_news">Giá: 150000</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item col-md-3">
-                                            <a href="" title=""><img src="images/p2.jpg" alt="">
-                                            </a>
-                                            <div class="footer-cate">
-                                                <p class="name_product"><a href="" title="">Tin tức 3</a></p>
-                                                <div class="price tac">
-                                                    <span class="price_news">Giá: 150000</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item col-md-3">
-                                            <a href="" title=""><img src="images/p1.jpg" alt="">
-                                            </a>
-                                            <div class="footer-cate">
-                                                <p class="name_product"><a href="" title="">Tin tức 4</a></p>
-                                                <div class="price tac">
-                                                    <span class="price_news">Giá: 150000</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="menuxy2">
-                                noi dung tab
-                            </div>
-                            <div class="tab-pane fade" id="menuxy3">
-                                nio dung tab3
-                            </div>
-                        </div>
-                        <div class="pull-right"><a href="" class="read-more">Xem thêm <i class="fa fa-angle-right"></i></a></div>
-                    </div>                       
-                                            
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
@@ -325,18 +147,16 @@ $sliders = DB::table('slider')->where('status',1)->where('com','gioi-thieu')->or
                     
                     <div class="list-product-item">
                         <div class="owl-carousel owl-theme owl-carousel-product owl-carousel-product2">
+                            @foreach($videos as $video)
                             <div class="item">
-                                <a href="" title=""><img src="images/p1.jpg" alt="">
-                                </a>
-                                
-                                <div class="footer-cate">
-                                    <p class="name_product"><a href="" title="">Tin tức 1</a></p>
-                                    <div class="price tac">
-                                        <span class="price_news">Giá: 150000</span>
-                                    </div>
+                                <div class="box-frame-video">
+                                    {!! $video->link !!}
+                                </div>
+                                <div class="name_product">
+                                    <a href="javascript:;" title="">{{$video->name}}</a>
                                 </div>
                             </div>
-                            
+                            @endforeach
                         </div>
                     </div>                        
                 </div>
@@ -356,26 +176,13 @@ $sliders = DB::table('slider')->where('status',1)->where('com','gioi-thieu')->or
                     
                     <div class="list-product-item partner">
                         <div class="owl-carousel owl-theme owl-carousel-product owl-carousel-product2">
+                            @foreach($partners as $partner)
                             <div class="item">
-                                <a href="" title=""><img src="images/p1.png" alt="">
+                                <a href="#" title=""><img src="{{asset('upload/banner/'.$partner->photo)}}" alt="">
                                 </a>                                   
                                 
                             </div>
-                            <div class="item">
-                                <a href="" title=""><img src="images/p2.png" alt="">
-                                </a>                                   
-                                
-                            </div>
-                            <div class="item">
-                                <a href="" title=""><img src="images/p3.png" alt="">
-                                </a>                                   
-                                
-                            </div>
-                            <div class="item">
-                                <a href="" title=""><img src="images/p4.png" alt="">
-                                </a>                                   
-                                
-                            </div>
+                            @endforeach
                         </div>
                     </div>                        
                 </div>

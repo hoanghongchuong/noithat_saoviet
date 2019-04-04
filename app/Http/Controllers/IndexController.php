@@ -10,6 +10,7 @@ use App\Recruitment;
 use DB,Cache,Mail, Session;
 use Cart;
 use App\Campaign;
+use App\Guest;
 use App\Bill;
 use App\CampaignCard;
 use App\District;
@@ -54,21 +55,41 @@ class IndexController extends Controller {
 		
 		$news = DB::table('news')->where('status',1)->where('com','tin-tuc')->take(4)->orderBy('id','desc')->get();
 		$products = DB::table('products')->where('status',1)->take(20)->orderBy('id','desc')->get();
-		$categories_home = ProductCate::where('status',1)->where('com','san-pham')->get();
+		$categories_home = ProductCate::where('status',1)->where('com','san-pham')->where('parent_id',0)->orderBy('id','desc')->get();
 		$thicong = DB::table('news')->where('com','thi-cong')
 					->where('status',1)->orderBy('id','desc')->get();
 		$phanphoi = DB::table('news')->where('com','phan-phoi')
 					->where('status',1)->orderBy('id','desc')->get();
 		$slogans = DB::table('slogan')->get();
+		$videos = DB::table('video')->get();
+		$partners = DB::table('partner')->get();
 		$setting =DB::table('setting')->select()->where('id',1)->get()->first();
 		$about = DB::table('about')->where('com','gioi-thieu')->first();
 		$title = $setting->title;
 		$keyword = $setting->keyword;
 		$description = $setting->description;		
 		$com = 'index';
+
+		//count guest online
+		$guest_id = session_id();
+		$time = time();
+		$time_check = $time-60;
+		$resultGuestId = Guest::where('guest_id',$guest_id)->first();
+		// dd($guest_id);
+		
+		if($resultGuestId){
+			Guest::where('guest_id', $guest_id)->update(['time' => $time]);
+		}else{
+			$guest = new Guest;
+			$guest->time = $time;
+			$guest->guest_id = $guest_id;			
+			$guest->save();
+			DB::table('setting')->increment('number_view',1);
+		}
+		Guest::where('time', '<', $time_check)->delete();
 		// End cấu hình SEO
 		$img_share = asset('upload/hinhanh/'.$setting->photo);
-		return view('templates.index_tpl', compact('com','keyword','description','title','img_share','products','categories_home','slogans','news','about','thicong','phanphoi'));
+		return view('templates.index_tpl', compact('com','keyword','description','title','img_share','products','categories_home','slogans','news','about','thicong','phanphoi','partners','videos'));
 	}
 	public function getProduct(Request $req)
 	{
@@ -85,13 +106,17 @@ class IndexController extends Controller {
 	}
 
 
-	public function getProductList($id, Request $req)
+	public function getProductList($alias, Request $req)
 	{		
 		
-		$cate_pro = DB::table('product_categories')->where('status',1)->where('parent_id',0)->orderby('id','asc')->get();
+		$array_string = explode('-', $alias);
+        $last         = array_pop($array_string);
+        $id           = substr($last, 1);
+		
+		$cate_pro = ProductCate::where('status',1)->where('parent_id',0)->orderby('id','asc')->get();
 		$partners = DB::table('partner')->get();
         $com = 'san-pham';
-        $product_cate = ProductCate::select('*')->where('status', 1)->where('alias', $id)->where('com','san-pham')->first();        
+        $product_cate = ProductCate::select('*')->where('status', 1)->where('id', $id)->where('com','san-pham')->first();        
         if (!empty($product_cate)) {            
         	$cate_parent = DB::table('product_categories')->where('id', $product_cate->parent_id)->first();
 
@@ -104,7 +129,6 @@ class IndexController extends Controller {
         		}
         	}        	
         	
-
         	$products = Products::whereIn('cate_id', $array_cate)->orderBy('id','desc')->paginate(18);
             
             if (!empty($product_cate->title)) {
@@ -274,6 +298,22 @@ class IndexController extends Controller {
 		$description = $data->description;
 		$keyword = $data->keyword;
 		return view('templates.thicong_detail', compact('title','description','keyword','com','data'));
+	}
+	public function design()
+	{
+		$data = DB::table('news')->where('com','thiet-ke')->where('status',1)->orderBy('id','desc')->get();
+		$com ='thiet-ke';
+		$title = 'Thiết kế';
+		return view('templates.design', compact('title','data','com'));
+	}
+	public function designDetail($alias)
+	{
+		$data = DB::table('news')->where('status',1)->where('com','thiet-ke')->where('alias',$alias)->first();
+		$com = 'thiet-ke';
+		$title = $data->title ? $data->title : $data->name;
+		$description = $data->description;
+		$keyword = $data->keyword;
+		return view('templates.design_detail', compact('title','com','description','keyword','data'));
 	}
 	public function search(Request $request)
 	{

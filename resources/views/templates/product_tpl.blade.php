@@ -21,7 +21,14 @@
                 <div class="title-cate"><h4>Danh mục sản phẩm</h4></div>
                 <div class="list-category">
                     @foreach($cate_pro as $category)
-                        <p class=""><a href="{{url('san-pham/'.$category->alias)}}" title="{{$category->name}}">{{$category->name}}</a></p>
+                        <p class="">
+                            <a href="{{url('san-pham/'.$category->alias.'-'.'p'.$category->id)}}" title="{{$category->name}}">{{$category->name}}</a>
+                        </p>
+                        <div class="p-child">
+                            @foreach($category->productCate() as $cate)
+                            <p><a href="{{url('san-pham/'.$cate->alias.'-'.'p'.$cate->id)}}">{{$cate->name}}</a></p>
+                            @endforeach
+                        </div>
                     @endforeach
                 </div>
                 

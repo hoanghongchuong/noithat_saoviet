@@ -3,7 +3,7 @@
 <head>
     <?php 
         $setting = Cache::get('setting'); 
-        $product_list = Cache::get('product_list');
+        $slogans = DB::table('slogan')->get();
     ?>
     <meta http-equiv="content-language" content="vi" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=1" />
@@ -60,22 +60,12 @@
         <div class="tuvan_footer" style="display: block;">          
             <div class="wap">
                 <div id="clos"></div>
+                @foreach($slogans as $slogan)
                 <div class="tv1">
-                    <p class="p2">Trưởng phòng kỹ thuật - Mr Thịnh</p>
-                    <p class="p3"> <a href="tel:0933460666">0933460666</a></p>                  
+                    <p class="p2">{{$slogan->name}}</p>
+                    <p class="p3"> <a href="tel:{{$slogan->content}}">{{$slogan->content}}</a></p>                  
                 </div>
-                <div class="tv1">
-                    <p class="p2">Tư vấn thi công 1 - Mr Hoàng</p>
-                    <p class="p3"> <a href="tel:0988935163">0988935163</a></p>                  
-                </div>
-                <div class="tv1">
-                    <p class="p2">Tư vấn thi công 2 - Mr khánh</p>
-                    <p class="p3"> <a href="tel:0982215528">0982215528</a></p>                  
-                </div>
-                <div class="tv1">
-                    <p class="p2">Tư vấn thi công 3 - Mr Thạo</p>
-                    <p class="p3"> <a href="tel:0932386086">0932386086</a></p>                  
-                </div>
+                @endforeach
             </div>
             
             <script type="text/javascript">
